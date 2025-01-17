@@ -2,15 +2,23 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
 const BlogPost = () => {
-  const { postId } = useParams();
+  const { postId } = useParams(); // Match the parameter with the dynamic route
   const [post, setPost] = useState(null);
 
   useEffect(() => {
-    // Simulate fetching data
+    // Fetch data for the specific post
     const fetchPost = async () => {
-      const response = await fetch(`https://jsonplaceholder.typicode.com/posts/${postId}`);
-      const data = await response.json();
-      setPost(data);
+      try {
+        const response = await fetch(`https://jsonplaceholder.typicode.com/posts/${postId}`);
+        if (!response.ok) {
+          throw new Error("Failed to fetch post");
+        }
+        const data = await response.json();
+        setPost(data);
+      } catch (error) {
+        console.error("Error fetching post:", error);
+        setPost(null);
+      }
     };
 
     fetchPost();

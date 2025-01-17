@@ -6,12 +6,12 @@ const App = () => {
   return (
     <BrowserRouter>
       <Routes>
-        {/* Other routes */}
+        {/* Home and About Routes */}
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
 
-        {/* Dynamic route for blog posts */}
-        <Route path="/blog/:id" element={<BlogPost />} />
+        {/* Dynamic Route for Blog Posts */}
+        <Route path="/blog/:postId" element={<BlogPost />} />
       </Routes>
     </BrowserRouter>
   );
