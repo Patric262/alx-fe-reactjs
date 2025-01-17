@@ -1,12 +1,17 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import BlogPost from "./components/BlogPost";
 
 const App = () => {
   return (
     <BrowserRouter>
       <Routes>
+        {/* Other routes */}
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
+
+        {/* Dynamic route for blog posts */}
+        <Route path="/blog/:id" element={<BlogPost />} />
       </Routes>
     </BrowserRouter>
   );
