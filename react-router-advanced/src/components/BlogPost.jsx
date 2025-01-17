@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
 const BlogPost = () => {
-  const { postId } = useParams(); // Match the parameter with the dynamic route
+  const { postId } = useParams(); // Ensure the parameter matches the route
   const [post, setPost] = useState(null);
   const [error, setError] = useState(null);
 
