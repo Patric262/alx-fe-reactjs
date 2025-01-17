@@ -4,9 +4,9 @@ import { useParams } from "react-router-dom";
 const BlogPost = () => {
   const { postId } = useParams(); // Match the parameter with the dynamic route
   const [post, setPost] = useState(null);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    // Fetch data for the specific post
     const fetchPost = async () => {
       try {
         const response = await fetch(`https://jsonplaceholder.typicode.com/posts/${postId}`);
@@ -17,13 +17,14 @@ const BlogPost = () => {
         setPost(data);
       } catch (error) {
         console.error("Error fetching post:", error);
-        setPost(null);
+        setError("Unable to load post. Please try again.");
       }
     };
 
     fetchPost();
   }, [postId]);
 
+  if (error) return <p>{error}</p>;
   if (!post) return <p>Loading...</p>;
 
   return (
